@@ -1,10 +1,17 @@
 package francescocristiano.U5_W1_D2.entities;
 
 import francescocristiano.U5_W1_D2.enums.StateOrder;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
+
+@Getter
+@Setter
+@ToString
 public class Order {
 
     private int orderNumber;
@@ -27,6 +34,6 @@ public class Order {
 
     private double calculateTotalPrice(double coverCost) {
         double itemsTotal = items.stream().mapToDouble(ItemMenu::getPrice).sum();
-        return itemsTotal + coverCost;
+        return itemsTotal + (coverCost * seats);
     }
 }
