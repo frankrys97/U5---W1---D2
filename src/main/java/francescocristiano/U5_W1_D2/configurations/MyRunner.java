@@ -5,9 +5,8 @@ import francescocristiano.U5_W1_D2.entities.Order;
 import francescocristiano.U5_W1_D2.entities.Table;
 import francescocristiano.U5_W1_D2.enums.State;
 import francescocristiano.U5_W1_D2.enums.StateOrder;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
@@ -18,15 +17,16 @@ import java.util.Random;
 @PropertySource("application.properties")
 public class MyRunner implements CommandLineRunner {
 
-    @Autowired
-    private Menu menu;
-
-    @Value("${coverCost}")
-    private double coverCost;
+/*    @Value("${coverCost}")
+    private double coverCost;*/
 
 
     @Override
     public void run(String... args) throws Exception {
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(BeanConfiguration.class);
+        Menu menu = context.getBean(Menu.class);
+
+        Double coverCost = context.getBean("coverCost", Double.class);
 
         Table table1 = new Table(1, 4, State.FREE);
 

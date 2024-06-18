@@ -6,12 +6,15 @@ import francescocristiano.U5_W1_D2.entities.Menu;
 import francescocristiano.U5_W1_D2.entities.Pizza;
 import francescocristiano.U5_W1_D2.entities.Topping;
 import francescocristiano.U5_W1_D2.enums.Size;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 
 import java.util.List;
 
 @Configuration
+@PropertySource("application.properties")
 public class BeanConfiguration {
 
  /*   @Bean
@@ -101,6 +104,11 @@ public class BeanConfiguration {
     @Bean
     public Menu menu() {
         return new Menu(List.of(margheritaPizza(), margheritaPizzaXl(), hawaiianPizza(), hawaiianPizzaXl(), salamiPizza(), salamiPizzaXl()), List.of(lemonade(), wine(), water()), List.of(ham(), pineapple(), onions(), salami()));
+    }
+
+    @Bean(name = "coverCost")
+    public Double coverCost(@Value("${cover.cost}") Double coverCost) {
+        return coverCost;
     }
 
 
